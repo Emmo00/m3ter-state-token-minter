@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
-contract PowerAggreements {
+contract PowerAggreements is IERC721Receiver{
     address public immutable m3terNFT;
 
     // mapping for m3ter token ID to Power aggrement token id check
@@ -56,7 +56,7 @@ contract PowerAggreements {
     function _depositNFT(uint256 tokenId, address from) internal {
         m3terToPowerAgreement[tokenId] = true;
         m3terToOwner[tokenId] = from;
-        
+
         IERC721(m3terNFT).safeTransferFrom(from, address(this), tokenId);
     }
 }

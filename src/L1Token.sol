@@ -20,7 +20,7 @@ contract L1Token is ERC20 {
         _mint(to, amount);
     }
 
-    function setMinter(address _minter) public {
+    function setMinter(address _minter) public onlyMinter {
         minter = _minter;
     }
 }

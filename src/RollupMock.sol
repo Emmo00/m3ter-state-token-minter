@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.28;
+pragma solidity ^0.8.0;
 
 /// @notice Mock of the Rollup contract used for testing — no zk-verifier, blobs stored in mappings.
 ///         Exposes the same read API (account, nonce, state, stateAddress, latestStateAddress).
