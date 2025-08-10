@@ -12,12 +12,7 @@ contract MockRollup {
 
     /// @notice Emitted when a new state is committed (keeps signature compatible with the real contract)
     event NewState(
-        address indexed sender,
-        uint256 indexed index,
-        uint256 anchor,
-        bytes account,
-        bytes nonce,
-        bytes proof
+        address indexed sender, uint256 indexed index, uint256 anchor, bytes account, bytes nonce, bytes proof
     );
 
     constructor() {
@@ -82,7 +77,7 @@ contract MockRollup {
         if (b.length < offset + 6) return bytes6(0);
 
         uint48 val = 0;
-        for (uint i = 0; i < 6; i++) {
+        for (uint256 i = 0; i < 6; i++) {
             val = (val << 8) | uint48(uint8(b[offset + i]));
         }
         return bytes6(val);

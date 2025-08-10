@@ -8,7 +8,7 @@ contract L1Token is ERC20 {
 
     constructor() ERC20("L1Token", "L1T") {
         minter = msg.sender;
-        _mint(msg.sender, 1000000 * 10**18);
+        _mint(msg.sender, 1000000 * 10 ** 18);
     }
 
     modifier onlyMinter() {
@@ -20,7 +20,7 @@ contract L1Token is ERC20 {
         _mint(to, amount);
     }
 
-    function setMinter(address _minter) public  {
+    function setMinter(address _minter) public {
         minter = _minter;
     }
 }

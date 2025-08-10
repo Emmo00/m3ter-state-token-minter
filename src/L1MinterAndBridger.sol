@@ -25,10 +25,10 @@ contract L1MinterAndBridger {
     function mintAndBridge(address to, uint256 amount, uint32 l2Gas, bytes calldata data) external onlyOwner {
         // Mint tokens to this contract
         IL1Token(l1Token).mint(address(this), amount);
-        
+
         // Approve L1StandardBridge to spend tokens
         IL1Token(l1Token).approve(l1Bridge, amount);
-        
+
         // Bridge tokens to L2
         IL1StandardBridge(l1Bridge).depositERC20To(l1Token, l2Token, to, amount, l2Gas, data);
     }
