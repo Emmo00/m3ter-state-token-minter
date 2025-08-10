@@ -3,6 +3,7 @@ pragma solidity ^0.8.0;
 
 import {IL1StandardBridge} from "./interfaces/IL1StandardBridge.sol";
 import {IL1Token} from "./interfaces/IL1Token.sol";
+import {IRollup} from "./interfaces/IRollup.sol";
 import {PowerAggreements} from "./PowerAggreements.sol";
 
 contract L1MinterAndBridger {
@@ -39,12 +40,8 @@ contract L1MinterAndBridger {
         require(powerAggreements.m3terToPowerAgreement(m3terTokenId), "L1MinterAndBridger: Invalid m3ter token ID");
 
         // Get cumulative balance from rollup contract
-        (bool success, bytes memory result) =
-            rollupAddress.staticcall(abi.encodeWithSignature("account(uint256)", m3terTokenId));
-
-        require(success, "L1MinterAndBridger: Failed to get account");
-
-        uint256 cumulativeBalance = uint256(uint48(abi.decode(result, (bytes6))));
+        bytes6 accountData = IRollup(rollupAddress).account(m3terTokenId);
+        uint256 cumulativeBalance = uint256(uint48(accountData));
 
         require(cumulativeBalance > 0, "L1MinterAndBridger: Insufficient balance");
 
