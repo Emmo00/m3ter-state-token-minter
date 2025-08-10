@@ -10,7 +10,6 @@ contract L1MinterAndBridger {
     address public immutable l1Token;
     address public immutable l2Token;
     address public immutable l1Bridge;
-    address public immutable owner;
     PowerAggreements public immutable powerAggreements;
     address public immutable rollupAddress;
 
@@ -28,15 +27,9 @@ contract L1MinterAndBridger {
         l1Token = _l1Token;
         l2Token = _l2Token;
         l1Bridge = _l1Bridge;
-        owner = msg.sender;
     }
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "L1MinterAndBridger: Only owner");
-        _;
-    }
-
-    function mintAndBridge(uint256 m3terTokenId, uint32 l2Gas, bytes calldata data) external onlyOwner {
+    function mintAndBridge(uint256 m3terTokenId, uint32 l2Gas, bytes calldata data) external {
         require(powerAggreements.m3terToPowerAgreement(m3terTokenId), "L1MinterAndBridger: Invalid m3ter token ID");
 
         // Get cumulative balance from rollup contract
@@ -46,6 +39,7 @@ contract L1MinterAndBridger {
         require(cumulativeBalance > 0, "L1MinterAndBridger: Insufficient balance");
 
         uint256 balanceDelta = uint256(cumulativeBalance) - uint256(tokenIdToAmountMinted[m3terTokenId]);
+        require(balanceDelta > 0, "L1MinterAndBridger: Insufficient balance");
 
         // encode balance with token ID
         uint256 amount = encodeBalanceWithTokenId(balanceDelta, m3terTokenId);
