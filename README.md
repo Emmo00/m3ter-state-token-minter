@@ -8,6 +8,7 @@ This project is a suite of smart contracts implementing L1 to L2 minting of the 
 - `L1MinterAndBridger.sol`: Handles minting and bridging logic on Layer 1.
 - `L1Token.sol`: ERC20 token contract for Layer 1.
 - `L2Token.sol`: ERC20 token contract for Layer 2.
+- `PowerAggreements.sol`: NFT storage for m3ter NFTs on Layer 1, holds info about who should get the minted tokens.
 - `RollupMock.sol`: Mock contract for rollup testing.
 
 ## Usage
