@@ -1,0 +1,2 @@
+lib/optimism/packages/contracts-bedrock:@openzeppelin/=lib/optimism/packages/contracts-bedrock/lib/openzeppelin-contracts/
+@openzeppelin/=lib/optimism/packages/contracts-bedrock/lib/openzeppelin-contracts/
