@@ -2,13 +2,13 @@
 pragma solidity ^0.8.20;
 
 import "forge-std/Script.sol";
-import {MockRollup} from "../src/MockRollup.sol";
+import {MockRollup} from "../src/RollupMock.sol";
 
 contract UpdateRollupBalance is Script {
     function run() external {
         // === CONFIG ===
         address rollupAddr = vm.envAddress("ROLLUP");
-        uint256 tokenId = vm.envUint("TOKEN_ID");     // index to update
+        uint256 tokenId = vm.envUint("TOKEN_ID"); // index to update
         uint48 newBalance = uint48(vm.envUint("NEW_BALANCE"));
         uint256 anchorBlock = block.number; // you can also pass this via env if needed
         uint256 pk = vm.envUint("PRIVATE_KEY");

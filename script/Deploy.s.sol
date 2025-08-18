@@ -44,15 +44,8 @@ contract Deploy is Script {
         console.log("Current msg.sender:", msg.sender);
 
         // Deploy L1MinterAndBridger contract
-        address minterAndBridger = address(
-            new L1MinterAndBridger(
-                powerAggreements,
-                rollupAddress,
-                l1Token,
-                l2Token,
-                l1Bridge
-            )
-        );
+        address minterAndBridger =
+            address(new L1MinterAndBridger(powerAggreements, rollupAddress, l1Token, l2Token, l1Bridge));
         // set minter as the l1minterandbridger
         L1Token(l1Token).setMinter(minterAndBridger);
         vm.stopBroadcast();
