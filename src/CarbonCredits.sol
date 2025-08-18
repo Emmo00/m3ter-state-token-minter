@@ -22,7 +22,7 @@ contract CarbonCredits is ERC721 {
         m3terNFT = m3terNFT_;
     }
 
-    function mint(uint256[] calldata tokenIds) external returns (uint256) {
+    function mint(uint256[] calldata tokenIds) external {
         uint256 totalEnergyConsumedSinceLastMint = 0;
 
         for (uint256 i = 0; i < tokenIds.length; i++) {
